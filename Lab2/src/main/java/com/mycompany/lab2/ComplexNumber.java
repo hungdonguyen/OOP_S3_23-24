@@ -71,4 +71,12 @@ public class ComplexNumber {
         result.re = this.re * n1.getRe();
         return result;
     }
+    
+    public ComplexNumber Division(ComplexNumber n1) {
+        ComplexNumber result = new ComplexNumber();
+        System.out.print("Division: ");
+        result.im = this.im * n1.getIm();
+        result.re = this.re * n1.getRe();
+        return result;
+    }
 }

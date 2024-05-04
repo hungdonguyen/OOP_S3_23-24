@@ -4,6 +4,9 @@
 
 package com.mycompany.lab2;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author Student
@@ -11,7 +14,9 @@ package com.mycompany.lab2;
 public class Lab2 {
 
     public static void main(String[] args) {
-        ComplexNumber c1 = new ComplexNumber();
+        Scanner sc = new Scanner(System.in);
+        //Q1
+        /*ComplexNumber c1 = new ComplexNumber();
         c1.Input();
         c1.Print();
         ComplexNumber c2 = new ComplexNumber();
@@ -19,7 +24,23 @@ public class Lab2 {
         c2.Print();
         c1.Plus(c2).Print();
         c1.Minus(c2).Print();
-        c1.Multiply(c2).Print();
+        c1.Multiply(c2).Print(); */
+        
+        /*
+        //Q2
+        Bank acb = new Bank();
+        acb.Input();
+        acb.Output();
+        //acb.DepositAccount();
+        //acb.WithdrawAccount();
+        acb.TransferAccount();
+        acb.Output();
+        */
+        
+        //Q3
+        Employee e1 = new Employee();
+        e1.InputEmployee();
+        e1.OutputEmployee();
         
     }
 }
