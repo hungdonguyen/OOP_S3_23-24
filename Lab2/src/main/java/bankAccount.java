@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.lab2;
+
 
 import java.util.Comparator;
 import java.util.Scanner;
@@ -11,12 +11,12 @@ import java.util.Scanner;
  *
  * @author Student
  */
-public class BankAccount {
+public class bankAccount {
 
-    public BankAccount() {
+    public bankAccount() {
     }
 
-    public BankAccount(int mAccNum,String mName, double mBalance) {
+    public bankAccount(int mAccNum,String mName, double mBalance) {
         this.mName = mName;
         this.mBalance = mBalance;
         this.mAccNum = mAccNum;
@@ -66,7 +66,7 @@ public class BankAccount {
         return true;
     }
     
-    public boolean transferMoney(BankAccount b1, double money) {
+    public boolean transferMoney(bankAccount b1, double money) {
        
         if(money<=0)return false;
         if (this.mBalance < money) {
