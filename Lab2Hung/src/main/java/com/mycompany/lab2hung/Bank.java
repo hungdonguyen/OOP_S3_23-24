@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package com.mycompany.lab2hung;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,17 +12,17 @@ import java.util.Scanner;
  *
  * @author Student
  */
-public class bank {
+public class Bank {
 
-    public bank() {
+    public Bank() {
     }
-    ArrayList<bankAccount> banklist = new ArrayList<>();
+    ArrayList<BankAccount> banklist = new ArrayList<>();
     public void Input() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Input number of customer: ");
         int n = sc.nextInt();
         for (int i=0; i<n; i++) {
-            bankAccount bankaccount = new bankAccount();
+            BankAccount bankaccount = new BankAccount();
             bankaccount.InputBankAccount();
             banklist.add(bankaccount);
         }
@@ -113,7 +113,12 @@ public class bank {
         }
     }
     
-    Comparator<bankAccount> com = (bankAccount o1, bankAccount o2) -> (int) (o1.getmBalance() - o2.getmBalance());
+    Comparator<BankAccount> com = new Comparator<BankAccount>() {
+        @Override
+        public int compare(BankAccount o1, BankAccount o2) {
+            return (int) (o1.getmBalance() - o2.getmBalance());
+        }
+    };
     
     public void SortAccNumberbyBalance() {
         banklist.sort(com);

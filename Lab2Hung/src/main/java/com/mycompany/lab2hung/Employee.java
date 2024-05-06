@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package com.mycompany.lab2hung;
 
 import java.util.Scanner;
 
@@ -83,7 +84,7 @@ public class Employee {
     }
     
     public void OutputEmployee () {
-        System.out.print("\n-----------" + "\nEmployee Code: " + employeeCode + ("\nEmployee Name: ") + employeeName + "\nYears Of Service: " + yearsOfService + "\nSalary coefficient: " + salaryCoefficient + "\nBasic Salary: " + basicSalary + "\nSalary" + Salary());
+        System.out.print("\n-----------" + "\nEmployee Code: " + employeeCode + ("\nEmployee Name: ") + employeeName + "\nYears Of Service: " + yearsOfService + "\nSalary coefficient: " + salaryCoefficient + "\nBasic Salary: " + basicSalary + "\nSalary: " + Salary());
     }
     
     public double Salary() {
