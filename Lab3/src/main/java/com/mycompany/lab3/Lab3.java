@@ -14,9 +14,10 @@ import java.util.Scanner;
 public class Lab3 {
 
     public static void main(String[] args) {
-        CD ss = new CD();
-        ss.InputList();
-        ss.OutputList();
+        // Q1
+        //CD ss = new CD();
+        //ss.InputList();
+        //ss.OutputList();
         //ss.SearchByTitle();
         //ss.SearchByCollection();
         //ss.SearchByType();
@@ -24,9 +25,17 @@ public class Lab3 {
         //ss.OutputList();
         //ss.EditCDInformationById();
         //ss.OutputList();
-        ss.SortByYearRelease();
-        ss.OutputList();
-            
+        //ss.SortByYearRelease();
+        //ss.OutputList();
+        
+        //Q2
+        Full_Time_Employee f1 = new Full_Time_Employee();
+        f1.InputListFullTimeEmployee();
+        f1.OutputListFullTimeEmployee();
+        Part_Time_Employee f2 = new Part_Time_Employee();
+        f2.InputListPartTimeEmployee();
+        f2.OutputListPartTimeEmployee();
+        
         
     }
 }
