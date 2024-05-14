@@ -19,8 +19,8 @@ public class Full_Time_Employee extends Employee{
     public Full_Time_Employee() {
     }
 
-    public Full_Time_Employee(float salary, String employeeID, String employeeName, int yearOfBirth, String address, String phone) {
-        super(employeeID, employeeName, yearOfBirth, address, phone);
+    public Full_Time_Employee(float salary, String employeeID, String employeeName, int yearOfBirth, String address, String phone, ArrayList<Employee> listEmployee) {
+        super(employeeID, employeeName, yearOfBirth, address, phone, listEmployee);
         this.salary = salary;
     }
 
@@ -45,11 +45,14 @@ public class Full_Time_Employee extends Employee{
         salary = sc.nextFloat();
     }
     
-    public void OutputFullTimeEmployee() {
-        System.out.println("******************");
-        System.out.println("Full time employee");
+    public String OutputFullTimeEmployee() {
+        StringBuilder sc = new StringBuilder();
+        sc.append("\n******************");
+        sc.append("\nFull time employee");
         super.Output();
-        System.out.println("Salary: " + salary);
+        sc.append("\nSalary: " + salary);
+        String s = sc.toString();
+        return s;
     }
     
     public void InputListFullTimeEmployee() {
@@ -60,44 +63,33 @@ public class Full_Time_Employee extends Employee{
             Full_Time_Employee e1 = new Full_Time_Employee();
             e1.InputFullTimeEmployee();
             FulltimeEmployeeList.add(e1);
+            listEmployee.add(e1);
         }
     }
     
-    public void OutputListFullTimeEmployee() {
+    public String OutputListFullTimeEmployee() {
+        StringBuilder sc = new StringBuilder();
         for (int i=0; i<FulltimeEmployeeList.size(); i++) {
-            FulltimeEmployeeList.get(i).OutputFullTimeEmployee();
+            sc.append("\n");
+            sc.append(FulltimeEmployeeList.get(i).OutputFullTimeEmployee());
         }
+        sc.append("Payment: ");
+        sc.append(getPayment());
+        String s = sc.toString();
+        return s;
     }
     
     
 
     @Override
     public String getInfo() {
-        return null;
+        return OutputListFullTimeEmployee();
     }
 
     @Override
     public float getPayment() {
-        return 0;
+        return salary;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

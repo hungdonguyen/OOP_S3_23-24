@@ -31,10 +31,11 @@ public class Lab3 {
         //Q2
         Full_Time_Employee f1 = new Full_Time_Employee();
         f1.InputListFullTimeEmployee();
-        f1.OutputListFullTimeEmployee();
+        f1.getInfo();
         Part_Time_Employee f2 = new Part_Time_Employee();
         f2.InputListPartTimeEmployee();
-        f2.OutputListPartTimeEmployee();
+        f2.getInfo();
+        
         
         
     }

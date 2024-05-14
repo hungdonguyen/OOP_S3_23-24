@@ -4,6 +4,10 @@
  */
 package com.mycompany.lab3;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -11,12 +15,37 @@ import java.util.Scanner;
  * @author Student
  */
 public abstract class Employee {
+
+    public Employee(String employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public Employee(String employeeID, String employeeName, int yearOfBirth, String address, String phone, ArrayList<Employee> listEmployee) {
+        this.employeeID = employeeID;
+        this.employeeName = employeeName;
+        this.yearOfBirth = yearOfBirth;
+        this.address = address;
+        this.phone = phone;
+        this.listEmployee = listEmployee;
+    }
+
+    
     private String employeeID;
     private String employeeName;
     private int yearOfBirth;
     private String address;
     private String phone;
-    StringBuilder s0 = new StringBuilder();
+    ArrayList<Employee> listEmployee;
+    
+
+    public ArrayList<Employee> getListEmployee() {
+        return listEmployee;
+    }
+
+    public void setListEmployee(ArrayList<Employee> listEmployee) {
+        this.listEmployee = listEmployee;
+    }
+    
 
     public String getEmployeeID() {
         return employeeID;
@@ -59,13 +88,7 @@ public abstract class Employee {
     }
     
             
-    public Employee(String employeeID, String employeeName, int yearOfBirth, String address, String phone) {
-        this.employeeID = employeeID;
-        this.employeeName = employeeName;
-        this.yearOfBirth = yearOfBirth;
-        this.address = address;
-        this.phone = phone;
-    }
+    
 
     public Employee() {
     }
@@ -94,6 +117,52 @@ public abstract class Employee {
             System.out.println("Phone number: " + phone);
     }
     
+    
     public abstract String getInfo();
     public abstract float getPayment();
+    
+    public void InputEmployee() {
+        List<Employee> listEmployee = new ArrayList<>();
+        
+    }
+    
+    //Search
+    static Comparator<Employee> compareAboutId = (Employee e1, Employee e2) -> e1.getEmployeeID().compareTo(e2.getEmployeeID());
+    
+    public void SearchbyID() {
+        listEmployee.sort(compareAboutId);
+        System.out.println("-------------");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Input ID need to search: ");
+        String s1 = sc.nextLine();
+        int index=-1;
+        for (int i=0; i<listEmployee.size(); i++) {
+            if (listEmployee.get(i).getEmployeeID().equals(s1)) {
+                index=i;
+                break;
+            }
+        }
+        if (index != -1) {
+            System.out.println("Found Employee: ");
+            listEmployee.get(index).Output();
+            int t=1;
+            while (index + t < listEmployee.size() && listEmployee.get(index).getEmployeeID().equals(listEmployee.get(index+t).getEmployeeID())) {
+                System.out.println("Found Employee: ");
+                listEmployee.get(index+t).Output();
+                t=t+1;
+            }
+            t=1;
+            while (index - t >= 0 && listEmployee.get(index).getEmployeeID().equals(listEmployee.get(index-t).getEmployeeID())) {
+                System.out.println("Found Employee: ");
+                listEmployee.get(index-t).Output();
+                t=t+1;
+            }
+        } else {
+            System.out.println("Employee not found");
+        }
+        
+    }
+    
+    
+    
 }

@@ -18,8 +18,8 @@ public class Part_Time_Employee extends Employee {
     ArrayList<Part_Time_Employee> parttimeEmployeeList = new ArrayList<>();
     StringBuilder sb = new StringBuilder();
     
-    public Part_Time_Employee(int workingHours, float payRate, String employeeID, String employeeName, int yearOfBirth, String address, String phone) {
-        super(employeeID, employeeName, yearOfBirth, address, phone);
+    public Part_Time_Employee(int workingHours, float payRate, String employeeID, String employeeName, int yearOfBirth, String address, String phone, ArrayList<Employee> listEmployee) {
+        super(employeeID, employeeName, yearOfBirth, address, phone, listEmployee);
         this.workingHours = workingHours;
         this.payRate = payRate;
     }
@@ -43,11 +43,13 @@ public class Part_Time_Employee extends Employee {
     
     public String OutputPartTimeEmployee() {
         StringBuilder s1 = new StringBuilder();
-        s1.append("******************");
-        s1.append("Part time employee");
+        s1.append("\n******************");
+        s1.append("\nPart time employee");
         super.Output();
-        s1.append("Working Hours: " + workingHours);
-        s1.append("Pay Rate: " + payRate);
+        s1.append("\nWorking Hours: ").append(workingHours);
+        s1.append("\nPay Rate: ").append(payRate);
+        String s = sb.toString();
+        return s;
     }
     
     public void InputListPartTimeEmployee() {
@@ -58,45 +60,31 @@ public class Part_Time_Employee extends Employee {
             Part_Time_Employee e2 = new Part_Time_Employee();
             e2.InputPartTimeEmployee();
             parttimeEmployeeList.add(e2);
+            listEmployee.add(e2);
         }
     }
     
     public String OutputListPartTimeEmployee() {
-        
+        StringBuilder sc = new StringBuilder();
         for (int i=0; i<parttimeEmployeeList.size(); i++) {
-            var k = parttimeEmployeeList.get(i);
-            
-            sb.append();
+            sc.append("\n");
+            sc.append(parttimeEmployeeList.get(i).OutputPartTimeEmployee());
         }
+        sc.append("Payment: ");
+        sc.append(getPayment());
+        String s = sc.toString();
+        return s;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     @Override
     public String getInfo() {
-        return
+        return OutputListPartTimeEmployee();
     }
 
     @Override
     public float getPayment() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return workingHours * payRate;
     }
     
 }
