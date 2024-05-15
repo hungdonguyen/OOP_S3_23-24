@@ -5,9 +5,7 @@
 package com.mycompany.lab3;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -115,53 +113,33 @@ public abstract class Employee {
             System.out.println("Year of Birth : " + yearOfBirth);
             System.out.println("Address: " + address);
             System.out.println("Phone number: " + phone);
+            System.out.println("Payment: " + getPayment());
     }
     
     
     public abstract String getInfo();
     public abstract float getPayment();
     
-    public void InputEmployee() {
-        List<Employee> listEmployee = new ArrayList<>();
-        
-    }
+    
     
     //Search
-    static Comparator<Employee> compareAboutId = (Employee e1, Employee e2) -> e1.getEmployeeID().compareTo(e2.getEmployeeID());
     
-    public void SearchbyID() {
-        listEmployee.sort(compareAboutId);
-        System.out.println("-------------");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Input ID need to search: ");
-        String s1 = sc.nextLine();
-        int index=-1;
-        for (int i=0; i<listEmployee.size(); i++) {
-            if (listEmployee.get(i).getEmployeeID().equals(s1)) {
-                index=i;
-                break;
-            }
-        }
-        if (index != -1) {
-            System.out.println("Found Employee: ");
-            listEmployee.get(index).Output();
-            int t=1;
-            while (index + t < listEmployee.size() && listEmployee.get(index).getEmployeeID().equals(listEmployee.get(index+t).getEmployeeID())) {
-                System.out.println("Found Employee: ");
-                listEmployee.get(index+t).Output();
-                t=t+1;
-            }
-            t=1;
-            while (index - t >= 0 && listEmployee.get(index).getEmployeeID().equals(listEmployee.get(index-t).getEmployeeID())) {
-                System.out.println("Found Employee: ");
-                listEmployee.get(index-t).Output();
-                t=t+1;
-            }
-        } else {
-            System.out.println("Employee not found");
-        }
+    static Comparator<Employee> compareAboutAge = (Employee e1, Employee e2) -> {
+        return e2.getYearOfBirth()-(e1.getYearOfBirth());
+    };
+    static Comparator<Employee> compareAboutPayment = (Employee e1, Employee e2) -> {
+        return (int) (e1.getPayment()- e2.getPayment());
+    };
+    public abstract void SearchbyID();
+    public abstract void DeletebyID();
+    public abstract void EditbyID();
+    public abstract void SearchbyPayment();
+    public abstract void Sortbyage() ;
+    public abstract void SortbyPayment();
         
-    }
+    
+        
+    
     
     
     

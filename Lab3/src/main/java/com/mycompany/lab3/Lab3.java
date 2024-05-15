@@ -15,18 +15,17 @@ public class Lab3 {
 
     public static void main(String[] args) {
         // Q1
-        //CD ss = new CD();
-        //ss.InputList();
-        //ss.OutputList();
-        //ss.SearchByTitle();
-        //ss.SearchByCollection();
-        //ss.SearchByType();
-        //ss.DeleteCDbyID();
-        //ss.OutputList();
-        //ss.EditCDInformationById();
-        //ss.OutputList();
-        //ss.SortByYearRelease();
-        //ss.OutputList();
+        CD ss = new CD();
+        ss.InputList();
+        ss.OutputList();
+        ss.SearchByTitle();
+        ss.SearchByCollection();
+        ss.SearchByType();
+        ss.DeleteCDbyID();
+        ss.EditCDInformationById();
+        ss.SortByYearRelease();
+        ss.OutputList();
+
         
         //Q2
         Full_Time_Employee f1 = new Full_Time_Employee();
@@ -35,8 +34,18 @@ public class Lab3 {
         Part_Time_Employee f2 = new Part_Time_Employee();
         f2.InputListPartTimeEmployee();
         f2.getInfo();
-        
-        
-        
+        f1.SearchbyID();
+        f2.SearchbyID();
+        f1.DeletebyID();
+        f2.DeletebyID();
+        f2.EditbyID();
+        f1.EditbyID();
+        f1.SearchbyPayment();
+        f2.SearchbyPayment();
+        f1.Sortbyage();
+        f1.SortbyPayment();
+        f1.OutputListFullTimeEmployee();
+        f2.SortbyPayment();
+        f2.OutputListPartTimeEmployee(); 
     }
 }
