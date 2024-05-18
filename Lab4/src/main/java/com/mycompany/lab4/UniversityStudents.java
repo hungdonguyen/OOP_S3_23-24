@@ -55,7 +55,7 @@ public class UniversityStudents extends Student {
     @Override
     public void Output() {
         super.Output();
-        System.out.print("\thesisName: " + thesisName + "\nthesisScore" + thesisScore);
+        System.out.print("\nthesisName: " + thesisName + "\nthesisScore: " + thesisScore);
     }
 
     @Override

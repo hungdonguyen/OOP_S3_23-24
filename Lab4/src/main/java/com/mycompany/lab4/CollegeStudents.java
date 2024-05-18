@@ -31,12 +31,14 @@ public class CollegeStudents extends Student {
     }
     private double graduationExamScores;
     
+    
     @Override
     public void Input() {
         super.Input();
         System.out.println("Input graduationExamScores");
         graduationExamScores = sc.nextDouble();
     }
+    
     
     @Override
     public void Output() {

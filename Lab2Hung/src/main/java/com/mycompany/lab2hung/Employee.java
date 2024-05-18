@@ -16,13 +16,23 @@ public class Employee {
     private double salaryCoefficient;
     private double basicSalary;
     private String employeeCode;
-    
-    public Employee(String employeeCode, String employyeeName, int yearsOfService, double salaryCoefficient, double basicSalary) {
-        this.employeeCode = employeeCode;
-        this.employeeName = employyeeName;
+    private double Salary;
+
+    public Employee(String employeeName, int yearsOfService, double salaryCoefficient, double basicSalary, String employeeCode, double Salary) {
+        this.employeeName = employeeName;
         this.yearsOfService = yearsOfService;
         this.salaryCoefficient = salaryCoefficient;
         this.basicSalary = basicSalary;
+        this.employeeCode = employeeCode;
+        this.Salary = Salary;
+    }
+
+    public double getSalary() {
+        return Salary;
+    }
+
+    public void setSalary(double Salary) {
+        this.Salary = Salary;
     }
 
     public Employee() {
@@ -90,6 +100,7 @@ public class Employee {
     public double Salary() {
         double S;
         S=salaryCoefficient*basicSalary;
-        return S;
+        Salary = S;
+        return Salary ;
     }
 }
