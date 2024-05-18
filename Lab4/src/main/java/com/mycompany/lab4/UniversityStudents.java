@@ -1,0 +1,69 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.lab4;
+
+/**
+ *
+ * @author Student
+ */
+public class UniversityStudents extends Student {
+
+    public UniversityStudents() {
+    }
+
+    public UniversityStudents(String thesisName, double thesisScore, String studentNumber, String studentFullName, int totalcredit, double average) {
+        super(studentNumber, studentFullName, totalcredit, average);
+        this.thesisName = thesisName;
+        this.thesisScore = thesisScore;
+    }
+
+    public UniversityStudents(String thesisName, double thesisScore) {
+        this.thesisName = thesisName;
+        this.thesisScore = thesisScore;
+    }
+
+    public String getThesisName() {
+        return thesisName;
+    }
+
+    public void setThesisName(String thesisName) {
+        this.thesisName = thesisName;
+    }
+
+    public double getThesisScore() {
+        return thesisScore;
+    }
+
+    public void setThesisScore(double thesisScore) {
+        this.thesisScore = thesisScore;
+    }
+    private String thesisName;
+    private double thesisScore;
+    
+    
+    @Override
+    public void Input() {
+        super.Input();
+        System.out.println("Input thesisName");
+        thesisName = sc.next();
+        System.out.println("Input thesisScore");
+        thesisScore = sc.nextDouble();
+    }
+    
+    @Override
+    public void Output() {
+        super.Output();
+        System.out.print("\thesisName: " + thesisName + "\nthesisScore" + thesisScore);
+    }
+
+    @Override
+    public boolean CheckGraduation() {
+        if(getTotalcredit()>=150 && getAverage()>=5 && getThesisScore()>=5)
+        return true;
+        return false;
+    }
+
+    
+}
