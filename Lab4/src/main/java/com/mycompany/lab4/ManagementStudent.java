@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.lab4;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -80,4 +78,39 @@ public class ManagementStudent {
         System.out.println("Number of student eligible for graduation " + count);
     }
 
+    //6
+    public void Sapxep() {
+        ArrayList<Student> listsortCollege = new ArrayList<>();
+        ArrayList<Student> listsortUniversity = new ArrayList<>();
+        for (var k : studentlist) {
+            if (k.GetType().equals("College")) {
+                listsortCollege.add(k);
+            } else {
+                listsortUniversity.add(k);
+            }
+        }
+        listsortCollege.sort(Comparator.comparing(Student::getStudentNumber));
+        listsortUniversity.sort(Comparator.comparing(Student::getStudentNumber));
+        for (var k : listsortCollege) {
+            k.Output();
+        }
+        for (var k : listsortUniversity) {
+            k.Output();
+        }
+    }
+
+    public void Find() {
+        System.out.println("Input name need to find");
+        String s1 = sc.next();
+        ArrayList<Student> arr = new ArrayList<>();
+        for (var k:studentlist) {
+            if (k.getStudentFullName().contains(s1)) {
+                System.out.println("Found student: \n----------");
+                k.Output();
+                break;
+            }
+            else
+                System.out.println("Not found student");
+        }
+    }
 }

@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.lab4;
 
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -12,6 +10,7 @@ import java.util.Vector;
  * @author Student
  */
 public abstract class Student {
+
     static Scanner sc = new Scanner(System.in);
 
     public String getStudentNumber() {
@@ -59,11 +58,9 @@ public abstract class Student {
     private String studentFullName;
     private int totalcredit;
     private double average;
-    
-    
-    
+
     public void Input() {
-        System.out.print("Input studentNumber: ");
+        System.out.print("\nInput studentNumber: ");
         studentNumber = sc.next();
         System.out.print("Input studentFullName: ");
         studentFullName = sc.next();
@@ -72,13 +69,13 @@ public abstract class Student {
         System.out.print("Input average: ");
         average = sc.nextDouble();
     }
-    
-    
+
     public void Output() {
-        System.out.print("studentNumber: "+studentNumber + "\nstudentFullName: " + studentFullName + "\ntotalcredit: " + totalcredit + "\naverage: " + average);
+        System.out.print("\nstudentNumber: " + studentNumber + "\nstudentFullName: " + studentFullName + "\ntotalcredit: " + totalcredit + "\naverage: " + average);
     }
-    
+
     public abstract boolean CheckGraduation();
-    
-    
+
+    public abstract String GetType();
+
 }

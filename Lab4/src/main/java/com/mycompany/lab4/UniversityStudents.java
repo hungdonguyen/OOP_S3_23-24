@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.lab4;
 
 /**
@@ -9,6 +6,15 @@ package com.mycompany.lab4;
  * @author Student
  */
 public class UniversityStudents extends Student {
+    private String studentType = "University";
+    public String getStudentType() {
+        return studentType;
+    }
+
+    public void setStudentType(String studentType) {
+        this.studentType = studentType;
+    }
+    
 
     public UniversityStudents() {
     }
@@ -41,8 +47,7 @@ public class UniversityStudents extends Student {
     }
     private String thesisName;
     private double thesisScore;
-    
-    
+
     @Override
     public void Input() {
         super.Input();
@@ -51,7 +56,7 @@ public class UniversityStudents extends Student {
         System.out.println("Input thesisScore");
         thesisScore = sc.nextDouble();
     }
-    
+
     @Override
     public void Output() {
         super.Output();
@@ -60,10 +65,14 @@ public class UniversityStudents extends Student {
 
     @Override
     public boolean CheckGraduation() {
-        if(getTotalcredit()>=150 && getAverage()>=5 && getThesisScore()>=5)
-        return true;
+        if (getTotalcredit() >= 150 && getAverage() >= 5 && getThesisScore() >= 5) {
+            return true;
+        }
         return false;
     }
 
-    
+    @Override
+    public String GetType() {
+        return getStudentType();
+    }
 }

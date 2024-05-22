@@ -1,6 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 
 package com.mycompany.lab4;
 
@@ -76,7 +74,8 @@ static Scanner sc = new Scanner(System.in);
                 case 3 -> m1.RemoveStudentbyNumberCode();
                 case 4 -> m1.OutputList();
                 case 5 -> m1.PrintIfCheck();
-                
+                case 6 -> m1.Sapxep();
+                case 7 -> m1.Find();
             }
         } while (n!=8);
        
