@@ -158,4 +158,11 @@ public class StaffManagement implements Serializable {
         }
     }
 
+    public long TotalSalary() {
+        long totalSalary = 0;
+        for (var k : listStaff) {
+            totalSalary+=k.CaculateSalary();
+        }
+        return totalSalary;
+    }
 }
