@@ -28,6 +28,8 @@ public class Lab5_Q2 implements Serializable {
         System.out.println("7.Exit");
         System.out.println("Input Number: ");
         int n = sc.nextInt();
+        double totalSalary = sm1.TotalSalary(); 
+
         do {
             switch (n) {
                 case 1 -> {
@@ -53,7 +55,7 @@ public class Lab5_Q2 implements Serializable {
                     f = new File("C:\\Users\\Administrator\\Downloads\\lep5_q2\\TotalSalary.eiu");
                     f.deleteOnExit();
                     sm1.ReadFile(s1);
-                    double totalSalary = sm1.TotalSalary(); 
+                   
                     System.out.println("Total Salary: " + totalSalary);
                     sm1.WriteFile(s1); 
                     break;
