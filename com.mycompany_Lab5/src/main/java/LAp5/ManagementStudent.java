@@ -1,5 +1,6 @@
-package com.mycompany.lab5;
+package LAp5;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,35 +29,30 @@ public class ManagementStudent implements Serializable {
     public ManagementStudent() {
     }
     Scanner sc = new Scanner(System.in);
-    Vector<Student> resultlist = new Vector<>();
+
     Vector<Student> studentlist = new Vector<>();
 
-    public void WriteFile() {
+    public void WriteFile(String s) {
         try {
-            FileOutputStream f = new FileOutputStream("D:\\student.Dat");
-
+            FileOutputStream f = new FileOutputStream(s);
             ObjectOutputStream oStream = new ObjectOutputStream(f);
-
             for (Student stu : studentlist) {
                 oStream.writeObject(stu);
             }
-
+            System.out.println("\nWrite to file successful.");
         } catch (IOException e) {
             System.out.println("Error Read File");
         }
     }
-
-    public void ReadFile() {
+    public void ReadFile(String s) {
         try {
-            FileInputStream f = new FileInputStream("D:\\student.Dat");
-
+            FileInputStream f = new FileInputStream(s);
             ObjectInputStream iStream = new ObjectInputStream(f);
-
             Student st = null;
             while ((st = (Student) iStream.readObject()) != null) {
                 studentlist.add(st);
             }
-
+            System.out.println("\nWrite to file successful.");
             iStream.close();
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found");
@@ -74,7 +70,7 @@ public class ManagementStudent implements Serializable {
             c1.Input();
             studentlist.add(c1);
         }
-        WriteFile();
+
 
     }
 
@@ -86,7 +82,7 @@ public class ManagementStudent implements Serializable {
             UniversityStudents c1 = new UniversityStudents();
             c1.Input();
             studentlist.add(c1);
-            WriteFile();
+
         }
     }
 
@@ -147,6 +143,7 @@ public class ManagementStudent implements Serializable {
 
     //7
     public void Find() {
+        
         System.out.println("Input name need to find");
         String s1 = sc.next();
         for (var k : studentlist) {

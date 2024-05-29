@@ -1,5 +1,5 @@
 
-package com.mycompany.lab5;
+package LAp5;
 
 import java.io.Serializable;
 import java.util.Scanner;
