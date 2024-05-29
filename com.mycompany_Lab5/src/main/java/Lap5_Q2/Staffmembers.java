@@ -4,13 +4,14 @@
  */
 package Lap5_Q2;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author Maytinh
  */
-public abstract class Staffmembers {
+public abstract class Staffmembers implements Serializable {
 
     public Staffmembers(String fullName, String dateOfBirth, String id, long salary) {
         this.fullName = fullName;
@@ -52,11 +53,11 @@ public abstract class Staffmembers {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getStudentId() {
+    public String getId() {
         return id;
     }
 
-    public void setStudentId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
     

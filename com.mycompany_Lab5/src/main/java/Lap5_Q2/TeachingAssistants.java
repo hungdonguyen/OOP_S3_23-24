@@ -1,8 +1,10 @@
 
 package Lap5_Q2;
 
+import java.io.Serializable;
 
-public class TeachingAssistants extends Staffmembers {
+
+public class TeachingAssistants extends Staffmembers implements Serializable{
 
     public int getNumberOfSubject() {
         return numberOfSubject;

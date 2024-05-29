@@ -1,5 +1,6 @@
 package Lap5_Q2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ import java.util.Scanner;
  *
  * @author Maytinh
  */
-public class Specialists extends Staffmembers {
+public class Specialists extends Staffmembers implements Serializable {
 
     public int getNumberOfEducationProjectInvolved() {
         return numberOfEducationProjectInvolved;

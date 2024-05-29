@@ -102,7 +102,6 @@ public class ManagementStudent {
     public void Find() {
         System.out.println("Input name need to find");
         String s1 = sc.next();
-        ArrayList<Student> arr = new ArrayList<>();
         for (var k:studentlist) {
             if (k.getStudentFullName().contains(s1)) {
                 System.out.println("Found student: \n----------");

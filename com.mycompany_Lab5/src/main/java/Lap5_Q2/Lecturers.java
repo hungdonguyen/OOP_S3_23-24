@@ -1,6 +1,7 @@
 
 package Lap5_Q2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
  *
  * @author Maytinh
  */
-public class Lecturers extends Staffmembers {
+public class Lecturers extends Staffmembers implements Serializable {
 
     public String getAcademicRank() {
         return academicRank;
