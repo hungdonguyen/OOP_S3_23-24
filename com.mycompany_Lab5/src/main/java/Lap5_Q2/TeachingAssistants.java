@@ -30,7 +30,6 @@ public class TeachingAssistants extends Staffmembers implements Serializable{
     @Override
     public void Input() {
         super.Input();
-        
         System.out.println("\nInput number of subject assistant: ");
         numberOfSubject = sc.nextInt();
         
@@ -48,5 +47,11 @@ public class TeachingAssistants extends Staffmembers implements Serializable{
     public long CaculateSalary() {
         return (long) (numberOfSubject*0.3*18000);
     }
+
+    @Override
+    public String GetType() {
+        return "TeachingAssistants";
+    }
+    
     
 }

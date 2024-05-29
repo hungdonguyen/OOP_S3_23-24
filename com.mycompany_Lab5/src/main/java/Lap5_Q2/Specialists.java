@@ -101,4 +101,9 @@ public class Specialists extends Staffmembers implements Serializable {
         }
     }
 
+    @Override
+    public String GetType() {
+        return "Specialists";
+    }
+
 }

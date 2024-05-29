@@ -116,4 +116,9 @@ public class Lecturers extends Staffmembers implements Serializable {
             System.out.println(listOfSubjects.get(i));
         }
     }
+
+    @Override
+    public String GetType() {
+        return "Lecturers";
+    }
 }

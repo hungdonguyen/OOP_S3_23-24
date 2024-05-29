@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -55,10 +56,15 @@ public class StaffManagement implements Serializable {
                     listStaff.add(s1);
                 }
                 case 5 -> {
-
                     break;
                 }
             }
+            System.out.println("Choose section: ");
+            System.out.println("1. Input Lectrues:");
+            System.out.println("2. Input Teaching Assistant:");
+            System.out.println("3. Input Researchers");
+            System.out.println("4. Input Specialists");
+            System.out.println("5. Exit");
             System.out.println("Input number (1-5): ");
             n = sc.nextInt();
             if (n == 5) {
@@ -134,9 +140,9 @@ public class StaffManagement implements Serializable {
             }
         }
         if (flag) {
-             System.out.println("Staff Not Found");
+            System.out.println("Staff Not Found");
         }
-        
+
     }
 
     public void RemoveId() {
@@ -147,22 +153,63 @@ public class StaffManagement implements Serializable {
             if (k.getId().equals(s1)) {
                 System.out.println("Found Staff: ");
                 k.Output();
-                    listStaff.remove(k);
-                    System.out.println("Delete Sucessfully.");
-                    flag = false;
+                listStaff.remove(k);
+                System.out.println("Delete Sucessfully.");
+                flag = false;
                 break;
             }
         }
         if (flag) {
-             System.out.println("Staff Not Found");
+            System.out.println("Staff Not Found");
         }
     }
 
     public long TotalSalary() {
         long totalSalary = 0;
         for (var k : listStaff) {
-            totalSalary+=k.CaculateSalary();
+            totalSalary += k.CaculateSalary();
         }
         return totalSalary;
     }
+
+    public void TotalSalarybyType() {
+        long totalSalaryLec = 0;
+        long totalSalaryRes = 0;
+        long totalSalarySpe = 0;
+        long totalSalaryTea = 0;
+        for (var k : listStaff) {
+            if (k.GetType().equals("TeachingAssistants")) {
+                totalSalaryTea += k.CaculateSalary();
+            }
+            if (k.GetType().equals("Lecturers")) {
+                totalSalaryLec += k.CaculateSalary();
+            }
+            if (k.GetType().equals("Researchers")) {
+                totalSalaryRes += k.CaculateSalary();
+            }
+            if (k.GetType().equals("Specialists")) {
+                totalSalarySpe += k.CaculateSalary();
+            }
+        }
+        System.out.println("Salary by Type: ");
+        System.out.println("Lecturers: " + totalSalaryLec);
+        System.out.println("TeachingAssistants: " + totalSalaryTea);
+        System.out.println("Researchers: " + totalSalaryRes);
+        System.out.println("Specialists: " + totalSalarySpe);
+    }
+    
+    static Comparator<Staffmembers> compareAboutSalary = (Staffmembers o1, Staffmembers o2) -> {
+        return (int) (o2.CaculateSalary() - o1.CaculateSalary());
+    };
+    
+    public void PrintHighestSalaryStaff() {
+        ArrayList<Staffmembers> listStaffclone = new ArrayList<>(listStaff);
+        listStaffclone.sort(compareAboutSalary);
+        for (int i=1; i<=3; i++) {
+            System.out.println("3 Highest Staff Salary:");
+            System.out.println("Number " + i +": ");
+            listStaffclone.get(i-1).Output();
+        }
+    }
+    
 }

@@ -14,10 +14,10 @@ public class Lab5_Q2 implements Serializable {
 
     public static void main(String args[]) {
         StaffManagement sm1 = new StaffManagement();
-        File f = new File("C:\\Users\\Administrator\\Downloads\\lep5_q2\\TotalSalary.eiu");
-        f.delete();
-        String s = "C:\\Users\\Administrator\\Downloads\\lep5_q2\\EiuStaff.eiu";
-        String s1 = "C:\\Users\\Administrator\\Downloads\\lep5_q2\\TotalSalary.eiu";
+        String s = "C:\\JAVAVA\\EiuStaff.eiu";
+        String s1 = "C:\\JAVAVA\\TotalSalary.eiu";
+        String s2 = "C:\\JAVAVA\\TotalSalarybyType.eiu";
+        String s3 = "C:\\JAVAVA\\HighestPaidStaff.eiu";
         sm1.ReadFile(s);
         System.out.println("\nChoose section: ");
         System.out.println("1.Input List Staff");
@@ -25,12 +25,18 @@ public class Lab5_Q2 implements Serializable {
         System.out.println("3.Find And Edit by ID");
         System.out.println("4.Remove by Id");
         System.out.println("5.Print total salary");
-        System.out.println("7.Exit");
+        System.out.println("6.Print total salary by type");
+        System.out.println("7.List 3 Highest Staff Salary ");
+        System.out.println("8.Exit");
         System.out.println("Input Number: ");
         int n = sc.nextInt();
-        double totalSalary = sm1.TotalSalary(); 
+        double totalSalary = 0;
 
         do {
+            File f = new File("C:\\JAVAVA\\TotalSalary.eiu");
+            File f1 = new File("C:\\JAVAVA\\TotalSalarybyType.eiu");
+            File f2 = new File("C:\\JAVAVA\\HighestPaidStaff.eiu");
+
             switch (n) {
                 case 1 -> {
                     sm1.InputStaffList();
@@ -52,13 +58,21 @@ public class Lab5_Q2 implements Serializable {
                     break;
                 }
                 case 5 -> {
-                    f = new File("C:\\Users\\Administrator\\Downloads\\lep5_q2\\TotalSalary.eiu");
-                    f.deleteOnExit();
+                    f.delete();
                     sm1.ReadFile(s1);
-                   
+                    totalSalary=sm1.TotalSalary();
                     System.out.println("Total Salary: " + totalSalary);
-                    sm1.WriteFile(s1); 
                     break;
+                }
+                case 6 -> {
+                    f1.delete();
+                    sm1.ReadFile(s2);
+                    sm1.TotalSalarybyType();
+                }
+                case 7 -> {
+                    f2.delete();
+                    sm1.ReadFile(s3);
+                    sm1.PrintHighestSalaryStaff();
                 }
             }
             System.out.println("\nChoose section:");
@@ -67,10 +81,15 @@ public class Lab5_Q2 implements Serializable {
             System.out.println("3.Find And Edit by ID");
             System.out.println("4.Remove by Id");
             System.out.println("5.Print total salary");
-            System.out.println("7.Exit");
+            System.out.println("6.Print total salary by type");
+            System.out.println("7.List 3 Highest Staff Salary ");
+            System.out.println("8.Exit");
             System.out.println("Input Number: ");
             n = sc.nextInt();
-        } while (n != 7);
+        } while (n != 8);
+        sm1.WriteFile(s1); 
+        sm1.WriteFile(s2);
+        sm1.WriteFile(s3);
 
     }
 }

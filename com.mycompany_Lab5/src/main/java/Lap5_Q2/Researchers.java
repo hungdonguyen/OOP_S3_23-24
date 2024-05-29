@@ -90,4 +90,9 @@ public class Researchers extends Staffmembers implements Serializable {
         }
     }
 
+    @Override
+    public String GetType() {
+        return "Researchers";
+    }
+
 }

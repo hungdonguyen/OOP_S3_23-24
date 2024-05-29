@@ -79,4 +79,5 @@ public abstract class Staffmembers implements Serializable {
     }
     
     public abstract long CaculateSalary();
+    public abstract String GetType();
 }
