@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.lab6_q6;
+package com.mycompany.lab7;
 
 /**
  *
- * @author Maytinh
+ * @author Student
  */
-public class Lab6_Q6 {
+public class Lab7 {
 
     public static void main(String[] args) {
-         UI ui = new UI("ADD_NEW_CD");
-        ui.setVisible(true);
+        CDStore cdStore = new CDStore();
+        cdStore.setVisible(true);
     }
 }
