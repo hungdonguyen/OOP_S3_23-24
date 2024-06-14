@@ -4,6 +4,10 @@
  */
 package com.mycompany.lab7;
 
+import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CDStore extends javax.swing.JFrame {
 
-    
+    public CDManager cdm1 = new CDManager();
+    public CDModel cdmodel = new CDModel();
 
     /**
      * Creates new form CDStore
@@ -38,13 +43,14 @@ public class CDStore extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCD = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         btnNewCd.setText("NEW CD");
         btnNewCd.setToolTipText("");
@@ -56,9 +62,19 @@ public class CDStore extends javax.swing.JFrame {
         jPanel1.add(btnNewCd);
 
         btnBackUp.setText("Backup");
+        btnBackUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackUpActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBackUp);
 
         btnRestore.setText("Restore");
+        btnRestore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestoreActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRestore);
 
         btnRefresh.setText("Refresh");
@@ -70,6 +86,11 @@ public class CDStore extends javax.swing.JFrame {
         jPanel1.add(btnRefresh);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDelete);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -82,11 +103,16 @@ public class CDStore extends javax.swing.JFrame {
         });
         jPanel2.add(jComboBox1);
 
-        jTextField1.setName(""); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(400, 22));
-        jPanel2.add(jTextField1);
+        txtSearch.setName(""); // NOI18N
+        txtSearch.setPreferredSize(new java.awt.Dimension(400, 22));
+        jPanel2.add(txtSearch);
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnSearch);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
@@ -121,22 +147,89 @@ public class CDStore extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNewCdActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-       CDManager cdm1 = new CDManager();
-        DefaultTableModel model = (DefaultTableModel) tableCD.getModel();
-        model.setRowCount(0);
-        tableCD.setModel(model);
-        for (var k:cdm1.getListCD()) {
-            model.addRow(new Object[]{k.getTitle(), k.getCollection(), k.getType(), k.getPrice()});
-        }
-        
-        
-       
+
+        refreshModel();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void btnBackUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackUpActionPerformed
+        JFileChooser fc = new JFileChooser("D:\\");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".EIU Files", "eiu");
+        fc.setFileFilter(filter);
+        int option = fc.showSaveDialog(null);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            String filename = fc.getSelectedFile().toString();
+            if (!filename.endsWith(".eiu")) {
+                filename += ".eiu";
+            }
+            cdm1.writeTo(filename);
+            btnRefreshActionPerformed(evt);
+        }
+    }//GEN-LAST:event_btnBackUpActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String searchCategory = jComboBox1.getSelectedItem().toString();
+        String para = txtSearch.getText();
+        if (!para.equals("")) {
+            btnRefreshActionPerformed(evt);
+            ArrayList<CD> listCD = cdm1.searchBy(searchCategory, para);
+            fillModel(listCD);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestoreActionPerformed
+        JFileChooser fc = new JFileChooser("D:\\");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".EIU Files", "eiu");
+        fc.setFileFilter(filter);
+        int option = fc.showOpenDialog(null);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            
+            cdm1.readFrom(fc.getSelectedFile().getAbsolutePath());
+            refreshModel();
+        }
+        
+    }//GEN-LAST:event_btnRestoreActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+       int selected = tableCD.getSelectedRow();
+        if (selected != -1) {
+            int answer = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this row?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (answer == JOptionPane.YES_OPTION) {
+                cdm1.removeCD(selected);
+                refreshModel();
+            }
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+    private void fillModel() {
+        DefaultTableModel model = (DefaultTableModel) tableCD.getModel();
+        tableCD.setModel(model);
+        for (var k : cdm1.getListCD()) {
+            model.addRow(new Object[]{k.getTitle(), k.getCollection(), k.getType(), k.getPrice()});
+        }
+    }
+
+    private void fillModel(ArrayList<CD> listCD) {
+        DefaultTableModel model = (DefaultTableModel) tableCD.getModel();
+        tableCD.setModel(model);
+        for (var k : cdm1.getListCD()) {
+            model.addRow(new Object[]{k.getTitle(), k.getCollection(), k.getType(), k.getPrice()});
+        }
+    }
+    private void refreshModel() {
+        clearModel();
+        fillModel();
+    }
+    
+     private void clearModel() {
+        DefaultTableModel model = (DefaultTableModel) tableCD.getModel();
+        if (model != null) {
+            model.setRowCount(0);
+        }
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -148,27 +241,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CDStore.class  
+            java.util.logging.Logger.getLogger(CDStore.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CDStore.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CDStore.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CDStore.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CDStore.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CDStore.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CDStore.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -192,7 +281,7 @@ public static void main(String args[]) {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableCD;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
